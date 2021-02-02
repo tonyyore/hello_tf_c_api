@@ -8,7 +8,7 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 if((CMAKE_CXX_COMPILER_ID MATCHES "GNU") OR (CMAKE_CXX_COMPILER_ID MATCHES "Clang"))
     set(CMAKE_VERBOSE_MAKEFILE ON)
-    add_compile_options(-Wall -Wextra -pedantic-errors -Werror)
+    add_compile_options(-Wall -Wextra -pedantic-errors -Wno-unused-parameter -Werror)
 elseif(CMAKE_CXX_COMPILER_ID MATCHES "MSVC")
     add_compile_options(/W4 /WX)
     if(NOT CMAKE_CXX_COMPILER_VERSION VERSION_LESS 19.11)
@@ -28,7 +28,7 @@ if(UNIX AND NOT APPLE)
     if (NOT EXISTS ${CMAKE_SOURCE_DIR}/tensorflow/lib/libtensorflow.so)
         file(
         DOWNLOAD
-            https://github.com/Neargye/tensorflow/releases/download/v1.15.0/libtensorflow-cpu-linux-x86_64-1.15.0.tar.gz ${CMAKE_SOURCE_DIR}/tensorflow/linux.tar.gz
+            https://storage.googleapis.com/tensorflow/libtensorflow/libtensorflow-cpu-windows-x86_64-2.4.0.zip ${CMAKE_SOURCE_DIR}/tensorflow/linux.tar.gz
         STATUS
             status
         LOG
@@ -51,7 +51,7 @@ elseif(APPLE)
     if (NOT EXISTS ${CMAKE_SOURCE_DIR}/tensorflow/lib/libtensorflow.so)
         file(
         DOWNLOAD
-            https://github.com/Neargye/tensorflow/releases/download/v1.15.0/libtensorflow-cpu-darwin-x86_64-1.15.0.tar.gz ${CMAKE_SOURCE_DIR}/tensorflow/darwin.tar.gz
+            https://storage.googleapis.com/tensorflow/libtensorflow/libtensorflow-cpu-darwin-x86_64-2.4.0.tar.gz ${CMAKE_SOURCE_DIR}/tensorflow/darwin.tar.gz
         STATUS
             status
         LOG
@@ -75,7 +75,7 @@ elseif(WIN32)
     if (NOT EXISTS ${CMAKE_SOURCE_DIR}/tensorflow/lib/tensorflow.dll)
         file(
         DOWNLOAD
-            https://github.com/Neargye/tensorflow/releases/download/v1.15.0/libtensorflow-cpu-windows-x86_64-1.15.0.zip ${CMAKE_SOURCE_DIR}/tensorflow/windows.zip
+            https://storage.googleapis.com/tensorflow/libtensorflow/libtensorflow-cpu-windows-x86_64-2.4.0.zip ${CMAKE_SOURCE_DIR}/tensorflow/windows.zip
         STATUS
             status
         LOG
@@ -126,7 +126,11 @@ target_link_libraries(allocate_tensor tensorflow)
 add_executable(batch_interface src/batch_interface.cpp src/tf_utils.cpp src/tf_utils.hpp)
 target_link_libraries(batch_interface tensorflow)
 
+add_executable(run_state_model src/run_state_model.cpp src/tf_utils.cpp src/tf_utils.hpp)
+target_link_libraries(run_state_model tensorflow)
+
 configure_file(models/graph.pb ${CMAKE_CURRENT_BINARY_DIR}/graph.pb COPYONLY)
+configure_file(models/state_model.pb ${CMAKE_CURRENT_BINARY_DIR}/state_model.pb COPYONLY)
 
 enable_testing()
 add_subdirectory(test)

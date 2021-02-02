@@ -39,5 +39,5 @@
 #endif
 
 TEST_CASE("Hello TF C API") {
-  REQUIRE(std::string(TF_Version()) == std::string("1.15.0"));
+  REQUIRE(std::string(TF_Version()) == std::string("2.4.0"));
 }

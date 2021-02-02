@@ -30,7 +30,8 @@
 #  pragma warning(disable : 4190)
 #endif
 
-#include <tensorflow/c/c_api.h> // TensorFlow C API header.
+#include "tensorflow/c/c_api.h" // TensorFlow C API header.
+#include "tensorflow/core/platform/ctstring.h" // TensorFlow Tstring
 #include <cstddef>
 #include <cstdint>
 #include <vector>

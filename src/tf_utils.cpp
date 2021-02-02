@@ -68,13 +68,23 @@ static TF_Buffer* ReadBufferFromFile(const char* file) {
   return buf;
 }
 
-TF_Tensor* ScalarStringTensor(const char* str, TF_Status* status) {
-  auto str_len = std::strlen(str);
-  auto nbytes = 8 + TF_StringEncodedSize(str_len); // 8 extra bytes - for start_offset.
-  auto tensor = TF_AllocateTensor(TF_STRING, nullptr, 0, nbytes);
-  auto data = static_cast<char*>(TF_TensorData(tensor));
-  std::memset(data, 0, 8);
-  TF_StringEncode(str, str_len, data + 8, nbytes - 8, status);
+void Deallocator(void* data, size_t, void*) {
+  std::free(data);
+}
+
+TF_Tensor* ScalarStringTensor(const char* str) {
+  TF_TString tstr;
+  TF_TString_Init(&tstr);
+  size_t s = sizeof(str) - 1;
+  TF_TString_Copy(&tstr, str, s);
+  auto tensor = TF_NewTensor(TF_STRING, 
+                             nullptr,
+                             0,
+                             &tstr,
+                             sizeof(tstr),
+                             &Deallocator,
+                             nullptr);
+
   return tensor;
 }
 
@@ -113,7 +123,7 @@ TF_Graph* LoadGraph(const char* graph_path, const char* checkpoint_prefix, TF_St
     return graph;
   }
 
-  auto checkpoint_tensor = ScalarStringTensor(checkpoint_prefix, status);
+  auto checkpoint_tensor = ScalarStringTensor(checkpoint_prefix);
   SCOPE_EXIT{ DeleteTensor(checkpoint_tensor); };
   if (TF_GetCode(status) != TF_OK) {
     DeleteGraph(graph);
