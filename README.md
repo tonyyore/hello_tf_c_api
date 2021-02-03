@@ -4,7 +4,7 @@
 
 Branch | Linux/OSX | Windows | License | Codacy
 -------|-----------|---------|---------|-------
-master |[![Build Status](https://travis-ci.org/Neargye/hello_tf_c_api.svg?branch=master)](https://travis-ci.org/Neargye/hello_tf_c_api)|[![Build status](https://ci.appveyor.com/api/projects/status/4js5recgpxp53q0v/branch/master?svg=true)](https://ci.appveyor.com/project/Neargye/hello-tf-c-api/branch/master)|[![License](https://img.shields.io/github/license/Neargye/hello_tf_c_api.svg)](LICENSE)|[![Codacy Badge](https://api.codacy.com/project/badge/Grade/65a8401ec7da4ff49a9d4603dfbb600a)](https://www.codacy.com/app/Neargye/hello_tf_c_api?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Neargye/hello_tf_c_api&amp;utm_campaign=Badge_Grade)
+master |[![Build Status](https://travis-ci.com/tyu-mit/hello_tf_c_api.svg?branch=master)](https://travis-ci.com/github/tyu-mit/hello_tf_c_api)|[![Build status](https://ci.appveyor.com/api/projects/status/5vhenkev1uj1eviy?svg=true)](https://ci.appveyor.com/project/tyu-mit/hello-tf-c-api/branch/master)|[![License](https://img.shields.io/github/license/Neargye/hello_tf_c_api.svg)](LICENSE)|[![Codacy Badge](https://api.codacy.com/project/badge/Grade/65a8401ec7da4ff49a9d4603dfbb600a)](https://www.codacy.com/app/Neargye/hello_tf_c_api?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Neargye/hello_tf_c_api&amp;utm_campaign=Badge_Grade)
 
 Example how to run TensorFlow lib C API on Windows, Linux and macOS(Darwin).
 
@@ -25,7 +25,7 @@ Example how to run TensorFlow lib C API on Windows, Linux and macOS(Darwin).
 ### Windows
 
 ```text
-git clone --depth 1 https://github.com/Neargye/hello_tf_c_api
+git clone --depth 1 https://github.com/tyu-mit/hello_tf_c_api
 cd hello_tf_c_api
 mkdir build
 cd build
@@ -36,7 +36,7 @@ cmake --build . --config Debug
 ### Linux
 
 ```text
-git clone --depth 1 https://github.com/Neargye/hello_tf_c_api
+git clone --depth 1 https://github.com/tyu-mit/hello_tf_c_api
 cd hello_tf_c_api
 mkdir build
 cd build
@@ -47,7 +47,7 @@ cmake --build .
 ### macOS(Darwin)
 
 ```text
-git clone --depth 1 https://github.com/Neargye/hello_tf_c_api
+git clone --depth 1 https://github.com/tyu-mit/hello_tf_c_api
 cd hello_tf_c_api
 mkdir build
 cd build

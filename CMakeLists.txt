@@ -130,7 +130,6 @@ add_executable(run_state_model src/run_state_model.cpp src/tf_utils.cpp src/tf_u
 target_link_libraries(run_state_model tensorflow)
 
 configure_file(models/graph.pb ${CMAKE_CURRENT_BINARY_DIR}/graph.pb COPYONLY)
-configure_file(models/state_model.pb ${CMAKE_CURRENT_BINARY_DIR}/state_model.pb COPYONLY)
 
 enable_testing()
 add_subdirectory(test)
