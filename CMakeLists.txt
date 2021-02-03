@@ -126,9 +126,6 @@ target_link_libraries(allocate_tensor tensorflow)
 add_executable(batch_interface src/batch_interface.cpp src/tf_utils.cpp src/tf_utils.hpp)
 target_link_libraries(batch_interface tensorflow)
 
-add_executable(run_state_model src/run_state_model.cpp src/tf_utils.cpp src/tf_utils.hpp)
-target_link_libraries(run_state_model tensorflow)
-
 configure_file(models/graph.pb ${CMAKE_CURRENT_BINARY_DIR}/graph.pb COPYONLY)
 
 enable_testing()
